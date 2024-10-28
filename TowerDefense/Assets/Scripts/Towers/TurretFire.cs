@@ -19,4 +19,16 @@ public class TurretFire : Turret
             StartCoroutine(ApplyBurnDamage(enemyHealth));
         }
     }
+    private IEnumerator ApplyBurnDamage(Health enemyHealth)    // Corrotina que aplica dano por queimadura ao longo do tempo.
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < burnDuration) // Aplica dano enquanto a queimadura durar.
+        {
+            enemyHealth.TakeDamage(burnDamagePerSecond * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;   // Espera até o próximo quadro.
+        }
+    }
+
 }
