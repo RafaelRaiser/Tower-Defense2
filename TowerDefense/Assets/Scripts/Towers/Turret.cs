@@ -38,7 +38,30 @@ public class Turret : MonoBehaviour, IAttackable
             }
         }
     }
+    protected virtual void Shoot()    // Método protegido para disparar um projétil.
+    {
+        // Instancia o projétil no ponto de disparo e define o alvo.
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+        Bullet bulletScript = bulletObj.GetComponent<Bullet>();
+        if (bulletScript != null)
+        {
+            bulletScript.SetTarget(target);
+        }
+    }
 
- 
+    private bool IsTargetInRange()    // Verifica se o alvo está dentro do alcance da torre.
+    {
+        return Vector2.Distance(target.position, transform.position) <= targetingRange;
+    }
+
+    private void LocateTarget()    // Procura um alvo inimigo dentro do alcance usando um CircleCast.
+    {
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, Vector2.zero, 0f, enemyMask);
+        if (hits.Length > 0)
+        {
+            target = hits[0].transform;
+        }
+    }
+
 }
 
