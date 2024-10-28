@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject); // Destroi a nova instância se uma já existe
             return;
         }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // Mantém o LevelManager entre cenas.
     }
 #endregion
 }
