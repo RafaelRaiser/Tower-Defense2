@@ -15,4 +15,26 @@ public class Plot : MonoBehaviour
         // Armazena a cor inicial do SpriteRenderer.
         initialColor = spriteRenderer.color;
     }
+    private void OnMouseEnter()
+    {
+        // Muda a cor do plot para a cor de hover.
+        spriteRenderer.color = hoverColor;
+    }
+
+    private void OnMouseExit()
+    {
+        // Restaura a cor inicial do plot.
+        spriteRenderer.color = initialColor;
+    }
+
+    private void OnMouseDown()
+    {
+        if (tower != null) return; // Se já houver uma torre, retorna.
+
+        Tower selectedTower = BuildManager.Instance.GetSelectedTower(); // Obtém a torre do BuildManager.
+        if (selectedTower == null) return; // Retorna se nenhuma torre estiver selecionada.
+
+        // Instancia a torre na posição do plot.
+        tower = Instantiate(selectedTower.prefab, transform.position, Quaternion.identity);
+    }
 }
