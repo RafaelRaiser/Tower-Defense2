@@ -35,4 +35,40 @@ public class EnemyMover : MonoBehaviour
             SetNextTarget();
         }
     }
+    private void SetNextTarget()
+    {
+        currentPathIndex++;
+        if (currentPathIndex >= LevelManager.instance.path.Length)
+        {
+            EnemySpawner.onEnemyDestroy?.Invoke(); // Verifica se há ouvintes para o evento.
+            Destroy(gameObject);
+        }
+        else
+        {
+            currentTarget = LevelManager.instance.path[currentPathIndex];
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        MoveTowardsTarget();
+    }
+
+    private void MoveTowardsTarget()
+    {
+        Vector2 movementDirection = (currentTarget.position - transform.position).normalized;
+        enemyRigidbody.velocity = movementDirection * movementSpeed;
+    }
+
+    // Métodos para manipulação de velocidade
+    public void ModifySpeed(float newSpeed)
+    {
+        movementSpeed = newSpeed;
+    }
+
+    public void RestoreDefaultSpeed()
+    {
+        movementSpeed = defaultSpeed;
+    }
+    }
 }
