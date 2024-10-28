@@ -18,6 +18,25 @@ public class TurretSlomo : Turret
             timeUntilFire = 0f; 
         }
     }
+    private void ApplySlowEffect() 
+    {
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, Vector2.zero, 0f, enemyMask);
 
+        foreach (var hit in hits)
+        {
+            EnemyMovement enemyMovement = hit.transform.GetComponent<EnemyMovement>();
+            if (enemyMovement != null)
+            {
+                enemyMovement.UpdateSpeed(enemyMovement.baseSpeed * slowMultiplier); // Aplica a redução de velocidade.
+                StartCoroutine(ResetEnemySpeed(enemyMovement)); // Reseta a velocidade após a duração do efeito.
+            }
+        }
+    }
+
+    private IEnumerator ResetEnemySpeed(EnemyMovement enemyMovement) // Corrotina para restaurar a velocidade do inimigo.
+    {
+        yield return new WaitForSeconds(slowEffectDuration);
+        enemyMovement.ResetSpeed(); // Restaura a velocidade original do inimigo.
+    }
 }
 
