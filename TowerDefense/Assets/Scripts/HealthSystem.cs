@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] protected float healthPoints = 2f;  // Pontos de vida iniciais do objeto.
+    [SerializeField] protected float healthPoints = 2f; 
 
     protected bool destroyed = false;   // Flag para verificar se o objeto foi destruído.
 
