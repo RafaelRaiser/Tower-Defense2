@@ -16,5 +16,29 @@ public class Turret : MonoBehaviour, IAttackable
     {
 
     }
+    private void Update()
+    {
+        if (target == null)
+        {
+            LocateTarget();
+            return;
+        }
+
+        if (!IsTargetInRange())
+        {
+            target = null;  // Perde o alvo se ele sair do alcance.
+        }
+        else
+        {
+            timeUntilNextShot += Time.deltaTime;
+            if (timeUntilNextShot >= 1f / bulletsPerSecond)
+            {
+                Shoot();
+                timeUntilNextShot = 0f;  // Reseta o tempo até o próximo disparo.
+            }
+        }
+    }
+
+ 
 }
 
