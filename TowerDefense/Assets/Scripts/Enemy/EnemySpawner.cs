@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        onEnemyDestroyed.AddListener(HandleEnemyDestroyed); // Escuta o evento de destruição de inimigos.
+        onEnemyDestroyed.AddListener(HandleEnemyDestroyed); // Executa o evento de destruição de inimigos.
     }
 
 
@@ -40,4 +40,81 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(InitializeWave()); // Inicia a primeira onda.
     }
+
+
+    private void Update()
+    {
+        if (!spawning) return;
+
+
+
+        spawnTimer += Time.deltaTime;
+
+
+
+        if (spawnTimer >= (1f / currentSpawnRate) && remainingEnemies > 0)
+        {
+            SpawnEnemy();
+            remainingEnemies--;
+            aliveEnemies++;
+            spawnTimer = 0f;
+        }
+
+
+
+        if (aliveEnemies == 0 && remainingEnemies == 0)
+        {
+            CompleteWave();
+        }
+    }
+
+
+
+    private void HandleEnemyDestroyed()
+    {
+        aliveEnemies--;
+    }
+
+
+
+    private IEnumerator InitializeWave()
+    {
+        yield return new WaitForSeconds(waveInterval);
+        spawning = true;
+        remainingEnemies = CalculateEnemiesPerWave();
+        currentSpawnRate = CalculateSpawnRate();
+    }
+
+
+
+    private void CompleteWave()
+    {
+        spawning = false;
+        spawnTimer = 0f;
+        waveNumber++;
+        StartCoroutine(InitializeWave());
+    }
+
+
+
+    private void SpawnEnemy()
+    {
+        int randomIndex = Random.Range(0, enemyPrefabs.Length);
+        GameObject enemyToSpawn = enemyPrefabs[randomIndex];
+        Instantiate(enemyToSpawn, LevelManager.instance.startPoint.position, Quaternion.identity);
+    }
+
+
+
+    private int CalculateEnemiesPerWave()
+    {
+        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(waveNumber, difficultyScale));
+    }
+
+
+
+    private float CalculateSpawnRate()
+    {
+        return Mathf.Clamp(spawnRate * Mathf.Pow(waveNumber, difficultyScale), 0f, maxSpawnRate);
+    }
 }
