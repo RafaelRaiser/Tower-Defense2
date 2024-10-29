@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankEnemy : MonoBehaviour
+public class TankEnemy : HealthSystem
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Tank Enemy Settings")]
+    [SerializeField] private float resistanceMultiplier = 0.5f; // Diminui o dano recebido.
 
-    // Update is called once per frame
-    void Update()
+    public override void TakeDamage(float damage)
     {
-        
+        base.TakeDamage(damage * resistanceMultiplier); // Toma menos dano.
     }
 }
