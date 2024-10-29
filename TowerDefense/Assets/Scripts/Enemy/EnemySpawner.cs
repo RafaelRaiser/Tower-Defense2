@@ -26,5 +26,18 @@ public class EnemySpawner : MonoBehaviour
     private int remainingEnemies;             // Inimigos restantes a serem gerados na onda atual.
     private int aliveEnemies = 0;             // Número de inimigos vivos.
     private bool spawning = false;            // Indica se a onda de inimigos está em andamento.
-    private float currentSpawnRate;           // Taxa de geração de inimigos ajustada para a onda atual.
+    private float currentSpawnRate;           // Taxa de geração de inimigos ajustada para a onda atual.
+
+
+    private void Awake()
+    {
+        onEnemyDestroyed.AddListener(HandleEnemyDestroyed); // Escuta o evento de destruição de inimigos.
+    }
+
+
+
+    private void Start()
+    {
+        StartCoroutine(InitializeWave()); // Inicia a primeira onda.
+    }
 }
