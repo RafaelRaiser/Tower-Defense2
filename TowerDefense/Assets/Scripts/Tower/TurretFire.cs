@@ -34,7 +34,7 @@ public class TurretFire : Turret
 
         while (elapsedTime < burnDuration) // Enquanto o tempo  for menor que a duração da queimadura.
         {
-            enemyHealth.TakeDamage(burnDamagePerSecond * Time.deltaTime);    // Aplica dano ao inimigo baseado no dano por segundo.
+            enemyHealth.Damaged(burnDamagePerSecond * Time.deltaTime);    // Aplica dano ao inimigo baseado no dano por segundo.
             elapsedTime += Time.deltaTime; // Atualiza o tempo decorrido.
             yield return null;   // Espera o próximo quadro antes de continuar.
         }

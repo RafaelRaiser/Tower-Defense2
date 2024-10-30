@@ -48,14 +48,14 @@ public class EnemyMover : MonoBehaviour
         rb.velocity = direction * speedMove;         // Define a velocidade do Rigidbody2D para mover o inimigo em direção ao alvo.
 
     }
-    public void UpdateSpeed(float newSpeed)     // Método para atualizar a velocidade do inimigo, usado por torres ou outros efeitos.
-
+    public void UpdateSpeed(float newSpeed) // Método para atualizar a velocidade do inimigo.
     {
         speedMove = newSpeed;
-        public void ResetSpeed()
-        {
-            speedMove = baseSpeed;
-        }
+    }
+
+    public void ResetSpeed() // Método para resetar a velocidade para o valor base.
+    {
+        speedMove = baseSpeed;
     }
 
 }

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6458838690121565601}
   - component: {fileID: 7483463767343254987}
-  - component: {fileID: -8224437517341032486}
+  - component: {fileID: 4596132015399865921}
   m_Layer: 0
-  m_Name: Fire Turret
+  m_Name: Slowmo Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.046096165, b: 0, a: 1}
+  m_Color: {r: 0.062700935, g: 0, b: 0.16981131, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8224437517341032486
+--- !u!114 &4596132015399865921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,18 +95,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1059042359612664021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f74cc4309d36de44a944e579306d933, type: 3}
+  m_Script: {fileID: 11500000, guid: cd974a6277ab7b24b9dc0fdca6ae426d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingRange: 5
+  targetingRange: 2
   enemyMask:
     serializedVersion: 2
     m_Bits: 8
   bulletPrefab: {fileID: 4861451758258170669, guid: de97d89a78262824ea1bea10211769e6, type: 3}
   firingPoint: {fileID: 211147248100111750}
-  bps: 0.25
-  burnDuration: 8
-  burnDamagePerSecond: 0.25
+  bps: 2
+  aps: 2
+  FreezeTime: 2
 --- !u!1 &2709747414101283546
 GameObject:
   m_ObjectHideFlags: 0

@@ -88,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
     private int EnemiesPerWave()     // Método para calcular o número de inimigos por onda.
 
     {
-        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyScalingFactor)); // Aplica a escala de dificuldade.
+        return Mathf.RoundToInt(enemiesPerSecond * Mathf.Pow(currentWave, difficultyScalingFactor)); // Aplica a escala de dificuldade.
     }
     private float EnemiesPerSecond()     // Método para calcular a taxa de inimigos gerados por segundo.
 

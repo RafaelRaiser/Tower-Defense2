@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)     // Método chamado quando o projétil colide com outro objeto.
 
     {
-        other.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);        
+        other.gameObject.GetComponent<Health>().Damaged(bulletDamage);        
         Destroy(gameObject);        // Destrói o objeto do projétil após a colisão.
 
     }

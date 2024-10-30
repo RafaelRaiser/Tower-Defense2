@@ -19,18 +19,18 @@ public class RegeneratingEnemy : Health
         while (!isDestroyed)         // Enquanto o inimigo não estiver destruído, continua a regenerar saúde.
 
         {
-            if (hitPoints < maxHits)             // Se os pontos de vida estiverem abaixo do máximo, aumenta os pontos de vida.
+            if (hit< maxHits)             // Se os pontos de vida estiverem abaixo do máximo, aumenta os pontos de vida.
 
             {
-                hitPoints += regenerationRate * Time.deltaTime;  // Regenera saúde com base na taxa e no tempo.
-                hitPoints = Mathf.Min(hitPoints, maxHits);   // Garante que os pontos de vida não ultrapassem o máximo.
+                hit += regenerationRate * Time.deltaTime;  // Regenera saúde com base na taxa e no tempo.
+                hit = Mathf.Min(hit, maxHits);   // Garante que os pontos de vida não ultrapassem o máximo.
             }
             yield return null;  // Espera o próximo quadro antes de continuar.
         }
     }
 
-    public override void TakeDamage(float dmg)  // Método chamado quando o inimigo recebe dano.
+    public override void Damaged(float dmg) // Método chamado quando o inimigo recebe dano.
     {
-        base.TakeDamage(dmg);  // Chama o método TakeDamage da classe base.
+        base.Damaged(dmg); // Chama o método Damaged da classe base.
     }
 }

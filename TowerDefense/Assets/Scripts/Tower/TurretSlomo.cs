@@ -34,7 +34,7 @@ public class TurretSlomo : Turret
             {
                 RaycastHit2D hit = hits[i];
 
-                EnemyMovement em = hit.transform.GetComponent<EnemyMovement>();                // Obtém o componente de movimento do inimigo.
+                EnemyMover em = hit.transform.GetComponent<EnemyMover>();                // Obtém o componente de movimento do inimigo.
 
                 em.UpdateSpeed(0.5f);                // Reduz a velocidade do inimigo.
 
@@ -43,7 +43,7 @@ public class TurretSlomo : Turret
             }
         }
     }
-    private IEnumerator ResetEnemySpeed(EnemyMovement em)     //reseta a velocidade do inimigo após o tempo de congelamento.
+    private IEnumerator ResetEnemySpeed(EnemyMover em)     //reseta a velocidade do inimigo após o tempo de congelamento.
 
     {
         yield return new WaitForSeconds(FreezeTime);        // Espera pelo tempo de congelamento.
