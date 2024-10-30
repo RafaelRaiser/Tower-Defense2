@@ -2,57 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-public class MovimentoInimigo : MonoBehaviour // Classe MovimentoInimigo: Gerencia o movimento do inimigo em um caminho.
+
+public class EnemyMover : MonoBehaviour 
 
 {
-    [SerializeField] private Rigidbody2D corpoRigido;    // Rigidbody2D que controla o movimento do inimigo.
-
-    [SerializeField] private float velocidadeMovimento = 2f;    // Velocidade de movimento.
-
-    private Transform alvo;    // Próximo ponto do caminho para o inimigo seguir.
-
-    private int indiceCaminho = 0;    // Posição do inimigo no caminho.
-
-    private float velocidadeInicial;    // Velocidade original do inimigo.
-
-    private void Start() // Inicializa a velocidade e define o primeiro ponto de destino.
+    [SerializeField] private Rigidbody2D rb;   
+    [SerializeField] private float speedMove = 2f; 
+    
+    private Transform target;  
+    private int pathIndex = 0;    
+    private float baseSpeed;    
+    private void Start()
     {
-        velocidadeInicial = velocidadeMovimento;
-        alvo = LevelManager.instance.path[indiceCaminho];
+        baseSpeed = speedMove; // Armazena a velocidade base.
+        target = LevelManager.instance.path[pathIndex]; // Define o primeiro ponto do caminho como alvo.
     }
 
-    private void Update() // Checa se o inimigo chegou ao próximo ponto.
+    // Método chamado a cada quadro para verificar a distância até o próximo ponto do caminho.
+    private void Update()
     {
-        if (Vector2.Distance(alvo.position, transform.position) <= 0.1f)
-        {
-            indiceCaminho++;
+        if (Vector2.Distance(target.position,transform.position) <= 0.1f)        
 
-            if (indiceCaminho == LevelManager.instance.path.Length)
+        {
+            pathIndex++; // Avança para o próximo ponto do caminho.
+
+            if (pathIndex == LevelManager.instance.path.Length)           
+
             {
-                GeradorInimigos.onInimigoDestruido.Invoke();
-                Destroy(gameObject);
+                EnemySpawner.onEnemyDestroy.Invoke(); // Notifica o spawner que o inimigo foi destruído.
+                Destroy(gameObject); // Destrói o objeto do inimigo.
                 return;
             }
             else
             {
-                alvo = LevelManager.instance.path[indiceCaminho];
+                target = LevelManager.instance.path[pathIndex]; // Atualiza o alvo para o próximo ponto do caminho.
             }
         }
     }
+    private void FixedUpdate()     // Método chamado a cada quadro de física para mover o inimigo.
 
-    private void FixedUpdate() // Movimenta o inimigo na direção do alvo.
     {
-        Vector2 direcao = (alvo.position - transform.position).normalized;
-        corpoRigido.velocity = direcao * velocidadeMovimento;
-    }
+        Vector2 direction = (target.position -  transform.position).normalized;         // Calcula a direção do movimento em direção ao alvo e normaliza.
 
-    public void AjustarVelocidade(float novaVelocidade) // Método para alterar a velocidade temporariamente.
-    {
-        velocidadeMovimento = novaVelocidade;
-    }
 
-    public void ResetarVelocidade() // Restaura a velocidade original.
-    {
-        velocidadeMovimento = velocidadeInicial;
+        rb.velocity = direction * speedMove;         // Define a velocidade do Rigidbody2D para mover o inimigo em direção ao alvo.
+
     }
+    public void UpdateSpeed(float newSpeed)     // Método para atualizar a velocidade do inimigo, usado por torres ou outros efeitos.
+
+    {
+        speedMove = newSpeed;
+    public void ResetSpeed()
+    {
+        speedMove = baseSpeed; 
 }
