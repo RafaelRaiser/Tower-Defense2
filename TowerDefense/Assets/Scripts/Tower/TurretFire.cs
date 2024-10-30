@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class TurretFire : Turret .
+public class TurretFire : Turret
 
 {
     [SerializeField] private float burnDuration = 3f;      
