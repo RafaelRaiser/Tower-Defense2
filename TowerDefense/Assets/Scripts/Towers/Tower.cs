@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-
-[Serializable]
-public class Tower
+[Serializeble]
+public class Tower // Classe Tower: Representa uma torre que pode ser construída no jogo.
 {
     public string name; // Nome da torre.
     public GameObject prefab; // Prefab da torre, usado para instanciar a torre no jogo.

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class TorreCongelante : Torre // Classe TorreCongelante: Representa uma torre que reduz a velocidade dos inimigos.
 {

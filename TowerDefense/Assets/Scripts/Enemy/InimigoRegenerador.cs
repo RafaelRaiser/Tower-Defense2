@@ -1,37 +1,37 @@
 using System.Collections;
 using UnityEngine;
 
-public class RegeneratingEnemy : Health // Classe RegeneratingEnemy: Representa um inimigo que regenera saúde ao longo do tempo, herdando de Health.
+public class InimigoRegenerador : Vida // Classe InimigoRegenerador: Herda de Vida e adiciona regeneração de saúde.
 
 {
-    [SerializeField] private float regenerationRate = 1f;   // Taxa de regeneração de saúde por segundo.
-    [SerializeField] private float maxHitPoints = 5f;   // Máximo de pontos de vida que o inimigo pode ter.
+    [SerializeField] private float taxaRegeneracao = 1f;   // Taxa de regeneração de saúde.
+    [SerializeField] private float vidaMaxima = 5f;   // Limite máximo de saúde do inimigo.
 
-    private void Start()     // Método chamado no início do jogo. Inicializa os pontos de vida e inicia o processo de regeneração.
+    private void Start()     // Inicializa a saúde e inicia o processo de regeneração.
 
     {
-        hitPoints = maxHitPoints;   // Define os pontos de vida iniciais como o máximo.
-        StartCoroutine(RegenerateHealth());  // Inicia a corrotina para regenerar saúde.
+        pontosDeVida = vidaMaxima;   // Define a saúde inicial para o máximo permitido.
+        StartCoroutine(RegenerarSaude());  // Começa a regeneração da saúde.
     }
 
-    private IEnumerator RegenerateHealth()     // Corrotina que lida com a regeneração da saúde do inimigo.
+    private IEnumerator RegenerarSaude()     // Corrotina que controla a regeneração de saúde.
 
     {
-        while (!isDestroyed)         // Enquanto o inimigo não estiver destruído, continua a regenerar saúde.
+        while (!destruido)         // Continua regenerando enquanto o objeto não foi destruído.
 
         {
-            if (hitPoints < maxHitPoints)             // Se os pontos de vida estiverem abaixo do máximo, aumenta os pontos de vida.
+            if (pontosDeVida < vidaMaxima)             // Se a saúde estiver abaixo do limite máximo, regenera pontos.
 
             {
-                hitPoints += regenerationRate * Time.deltaTime;  // Regenera saúde com base na taxa e no tempo.
-                hitPoints = Mathf.Min(hitPoints, maxHitPoints);   // Garante que os pontos de vida não ultrapassem o máximo.
+                pontosDeVida += taxaRegeneracao * Time.deltaTime;  // Adiciona pontos de acordo com a taxa.
+                pontosDeVida = Mathf.Min(pontosDeVida, vidaMaxima);   // Limita a saúde ao valor máximo.
             }
-            yield return null;  // Espera o próximo quadro antes de continuar.
+            yield return null;  // Aguarda até o próximo quadro.
         }
     }
 
-    public override void TakeDamage(float dmg)  // Método chamado quando o inimigo recebe dano.
+    public override void ReceberDano(float dano)  // Recebe dano e chama o método da classe base.
     {
-        base.TakeDamage(dmg);  // Chama o método TakeDamage da classe base.
+        base.ReceberDano(dano);
     }
 }
