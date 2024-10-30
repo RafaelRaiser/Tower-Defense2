@@ -2,65 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
-public class EnemyMovement : MonoBehaviour // Classe EnemyMovement: Controla o movimento dos inimigos ao longo de um caminho definido.
+public class MovimentoInimigo : MonoBehaviour // Classe MovimentoInimigo: Gerencia o movimento do inimigo em um caminho.
 
 {
-    [SerializeField] private Rigidbody2D rb;    // Componente Rigidbody2D usado para movimentar o inimigo.
+    [SerializeField] private Rigidbody2D corpoRigido;    // Rigidbody2D que controla o movimento do inimigo.
 
-    [SerializeField] private float moveSpeed = 2f;    // Velocidade de movimento do inimigo.
+    [SerializeField] private float velocidadeMovimento = 2f;    // Velocidade de movimento.
 
-    private Transform target;    // Referência ao próximo ponto do caminho que o inimigo deve seguir.
+    private Transform alvo;    // Próximo ponto do caminho para o inimigo seguir.
 
-    private int pathIndex = 0;    // Índice do ponto atual no caminho.
+    private int indiceCaminho = 0;    // Posição do inimigo no caminho.
 
-    private float baseSpeed;    // Velocidade base do inimigo, usada para resetar a velocidade.
+    private float velocidadeInicial;    // Velocidade original do inimigo.
 
-    // Método chamado no início do jogo. Inicializa a velocidade e o alvo do inimigo.
-    private void Start()
+    private void Start() // Inicializa a velocidade e define o primeiro ponto de destino.
     {
-        baseSpeed = moveSpeed; // Armazena a velocidade base.
-        target = LevelManager.instance.path[pathIndex]; // Define o primeiro ponto do caminho como alvo.
+        velocidadeInicial = velocidadeMovimento;
+        alvo = LevelManager.instance.path[indiceCaminho];
     }
 
-    // Método chamado a cada quadro para verificar a distância até o próximo ponto do caminho.
-    private void Update()
+    private void Update() // Checa se o inimigo chegou ao próximo ponto.
     {
-        if (Vector2.Distance(target.position,transform.position) <= 0.1f)         // Verifica se o inimigo chegou perto o suficiente do ponto alvo.
-
+        if (Vector2.Distance(alvo.position, transform.position) <= 0.1f)
         {
-            pathIndex++; // Avança para o próximo ponto do caminho.
+            indiceCaminho++;
 
-            if (pathIndex == LevelManager.instance.path.Length)            // Verifica se o inimigo atingiu o final do caminho.
-
+            if (indiceCaminho == LevelManager.instance.path.Length)
             {
-                EnemySpawner.onEnemyDestroy.Invoke(); // Notifica o spawner que o inimigo foi destruído.
-                Destroy(gameObject); // Destrói o objeto do inimigo.
+                GeradorInimigos.onInimigoDestruido.Invoke();
+                Destroy(gameObject);
                 return;
             }
             else
             {
-                target = LevelManager.instance.path[pathIndex]; // Atualiza o alvo para o próximo ponto do caminho.
+                alvo = LevelManager.instance.path[indiceCaminho];
             }
         }
     }
-    private void FixedUpdate()     // Método chamado a cada quadro de física para mover o inimigo.
 
+    private void FixedUpdate() // Movimenta o inimigo na direção do alvo.
     {
-        Vector2 direction = (target.position -  transform.position).normalized;         // Calcula a direção do movimento em direção ao alvo e normaliza.
-
-
-        rb.velocity = direction * moveSpeed;         // Define a velocidade do Rigidbody2D para mover o inimigo em direção ao alvo.
-
+        Vector2 direcao = (alvo.position - transform.position).normalized;
+        corpoRigido.velocity = direcao * velocidadeMovimento;
     }
-    public void UpdateSpeed(float newSpeed)     // Método para atualizar a velocidade do inimigo, usado por torres ou outros efeitos.
 
+    public void AjustarVelocidade(float novaVelocidade) // Método para alterar a velocidade temporariamente.
     {
-        moveSpeed = newSpeed; // Atualiza a velocidade de movimento.
+        velocidadeMovimento = novaVelocidade;
     }
-    public void ResetSpeed()     // Método para resetar a velocidade do inimigo à sua velocidade base.
 
+    public void ResetarVelocidade() // Restaura a velocidade original.
     {
-        moveSpeed = baseSpeed; // Restaura a velocidade original.
+        velocidadeMovimento = velocidadeInicial;
     }
 }
