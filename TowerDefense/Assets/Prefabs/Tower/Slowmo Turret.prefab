@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd974a6277ab7b24b9dc0fdca6ae426d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingRange: 2
+  targetingRange: 4
   enemyMask:
     serializedVersion: 2
     m_Bits: 8
