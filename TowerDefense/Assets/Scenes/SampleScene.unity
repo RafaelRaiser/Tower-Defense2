@@ -9048,13 +9048,13 @@ MonoBehaviour:
   - {fileID: 8282016132933462297, guid: 28d7dfcf3c3695b4d9b80f24dd917eab, type: 3}
   - {fileID: 8282016132933462297, guid: 6cffb79e546ad4648bdf64d2fb63b3cc, type: 3}
   - {fileID: 8282016132933462297, guid: ae91bffa999a323479532160ee90d025, type: 3}
-  - {fileID: 8282016132933462297, guid: 70c6e1667580b6f48baf95ef1b5f8202, type: 3}
   - {fileID: 5646289322033020358, guid: 1d5e066146c2b9e4c814a0688f87d792, type: 3}
+  - {fileID: 8282016132933462297, guid: 70c6e1667580b6f48baf95ef1b5f8202, type: 3}
   perEnemiesWave: 12
-  enemiesPerSecond: 2
-  timeBetweenWaves: 2
+  enemiesPerSecond: 0.5
+  timeBetweenWaves: 5
   difficultyScalingFactor: 0.75
-  enemiesPerSecondCap: 100
+  enemiesPerSecondCap: 15
 --- !u!114 &1752003975
 MonoBehaviour:
   m_ObjectHideFlags: 0
