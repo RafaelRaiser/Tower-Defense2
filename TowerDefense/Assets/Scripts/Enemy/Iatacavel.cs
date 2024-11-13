@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// IAtacavel.cs
 public interface Iatacavel
 {
-    void Atacar();
+    void Atacar(); // Define método de ataque.
 }
 
-// IBuscadorDeAlvo.cs
 public interface IBuscadorDeAlvo
 {
-    Transform ObterAlvo();
+    Transform ObterAlvo(); // Define método de obtenção de alvo.
 }

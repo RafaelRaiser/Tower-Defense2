@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TurretFire : Turret
 {
-    [SerializeField] private float burnDuration = 3f;
-    [SerializeField] private float burnDamagePerSecond = 1f;
+    [SerializeField] private float burnDuration = 3f; // Duração do efeito de queimadura.
+    [SerializeField] private float burnDamagePerSecond = 1f; // Dano por segundo da queimadura.
 
     public override void Atacar()
     {
@@ -14,7 +14,7 @@ public class TurretFire : Turret
             Health enemyHealth = target.GetComponent<Health>();
             if (enemyHealth != null)
             {
-                StartCoroutine(ApplyBurnDamage(enemyHealth));
+                StartCoroutine(ApplyBurnDamage(enemyHealth)); // Aplica o efeito de queimadura.
             }
         }
     }
@@ -24,7 +24,7 @@ public class TurretFire : Turret
         float elapsedTime = 0f;
         while (elapsedTime < burnDuration)
         {
-            enemyHealth.Damaged(burnDamagePerSecond * Time.deltaTime);
+            enemyHealth.Damaged(burnDamagePerSecond * Time.deltaTime); // Aplica dano ao inimigo.
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -35,7 +35,6 @@ public class TurretFire : Turret
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
         bulletScript.SetTarget(target);
-
-        Atacar();
+        Atacar(); // Chama o método Atacar.
     }
 }

@@ -10,22 +10,15 @@ public class Turret : MonoBehaviour, Iatacavel, IBuscadorDeAlvo
     [SerializeField] protected Transform firingPoint;
     [SerializeField] private float bps = 1f;
 
-    protected Transform target;
-    protected float timeUntilFire;
+    protected Transform target; // Alvo atual.
+    protected float timeUntilFire; // Tempo até o próximo tiro.
 
     public virtual void Atacar() { }
 
     private void Update()
     {
-        if (target == null)
-        {
-            target = ObterAlvo();
-            return;
-        }
-        if (!CheckTargetIsInRange())
-        {
-            target = null;
-        }
+        if (target == null) target = ObterAlvo();
+        else if (!CheckTargetIsInRange()) target = null;
         else
         {
             timeUntilFire += Time.deltaTime;

@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
 [Serializable]
 public class Tower
 {
-    public string name;
-    public GameObject prefab;
+    public string name; // Nome da torre.
+    public GameObject prefab; // Prefab da torre.
 
-    public Tower(string _name, int _cost, GameObject _prefab)
+    public Tower(string _name, GameObject _prefab)
     {
         name = _name;
         prefab = _prefab;
