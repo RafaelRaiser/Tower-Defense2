@@ -5406,37 +5406,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 925923313832339020, guid: 755c0a1b03d77aa4e8ebfe493aa5d40b, type: 3}
   m_PrefabInstance: {fileID: 1054064228}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1059289605
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1059289606}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1059289606
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059289605}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.609805, y: 2.4058568, z: -9.88613}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1078817155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9051,10 +9020,10 @@ MonoBehaviour:
   - {fileID: 5646289322033020358, guid: 1d5e066146c2b9e4c814a0688f87d792, type: 3}
   - {fileID: 8282016132933462297, guid: 70c6e1667580b6f48baf95ef1b5f8202, type: 3}
   perEnemiesWave: 12
-  enemiesPerSecond: 0.5
+  enemiesPerSecond: 3
   timeBetweenWaves: 5
-  difficultyScalingFactor: 0.75
-  enemiesPerSecondCap: 15
+  difficultyScalingFactor: 2
+  enemiesPerSecondCap: 25
 --- !u!114 &1752003975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11649,4 +11618,3 @@ SceneRoots:
   - {fileID: 1347913967}
   - {fileID: 2128761955}
   - {fileID: 1728107918}
-  - {fileID: 1059289606}

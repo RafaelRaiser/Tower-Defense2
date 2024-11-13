@@ -104,9 +104,9 @@ MonoBehaviour:
     m_Bits: 8
   bulletPrefab: {fileID: 2003114535426397105, guid: 477bd980dec025b49b7de87cafdd69b2, type: 3}
   firingPoint: {fileID: 211147248100111750}
-  bps: 0.75
-  burnDuration: 10
-  burnDamagePerSecond: 1
+  bps: 1
+  burnDuration: 8
+  burnDamagePerSecond: 7
 --- !u!1 &2709747414101283546
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,15 +98,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd974a6277ab7b24b9dc0fdca6ae426d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingRange: 4
+  targetingRange: 3
   enemyMask:
     serializedVersion: 2
     m_Bits: 8
   bulletPrefab: {fileID: 4861451758258170669, guid: de97d89a78262824ea1bea10211769e6, type: 3}
   firingPoint: {fileID: 211147248100111750}
   bps: 2
-  aps: 2
-  FreezeTime: 2
+  aps: 4
+  FreezeTime: 3
 --- !u!1 &2709747414101283546
 GameObject:
   m_ObjectHideFlags: 0

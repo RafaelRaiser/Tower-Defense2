@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Iatacavel 
-
+// IAtacavel.cs
+public interface Iatacavel
 {
-    void Atacar();    
+    void Atacar();
+}
 
+// IBuscadorDeAlvo.cs
+public interface IBuscadorDeAlvo
+{
+    Transform ObterAlvo();
 }
